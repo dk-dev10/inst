@@ -7,6 +7,7 @@ import UserBadge from '../Userbadge';
 import Comment from '../Comment';
 
 import './styles.css';
+import cn from 'classnames';
 
 const DetailedCard = ({
   userName,
@@ -16,6 +17,7 @@ const DetailedCard = ({
   likes,
   isLikedByYou,
   comments,
+  className,
 }) => {
   const [isCommentsShow, setIsCommentsShow] = useState(false);
 
@@ -31,17 +33,19 @@ const DetailedCard = ({
             onClick={() => setIsCommentsShow(true)}
           >{`Показать ещё ${comments.length - 2} комментариев`}</span>
           {commentForRender.map((comment, i) => (
-            <Comment key={`${comment.nickName}${i}`} {...comment} />
+            <Comment key={`${comment.nickname}${i}`} {...comment} />
           ))}
         </>
       );
     }
 
-    return comments.map((comment, i) => <Comment  key={`${comment.nickName}${i}`} {...comment} />);
+    return comments.map((comment, i) => (
+      <Comment key={`${comment.nickname}${i}`} {...comment} />
+    ));
   };
 
   return (
-    <div className='cnDetailedCardRoot'>
+    <div className={cn('cnDetailedCardRoot', className)}>
       <div className='cnDetailedCardHeader'>
         <UserBadge nickName={userName} avatarUrl={avatarUrl} id={userId} />
       </div>
