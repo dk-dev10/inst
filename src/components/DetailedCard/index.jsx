@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cn from 'classnames';
 
 import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +8,6 @@ import UserBadge from '../Userbadge';
 import Comment from '../Comment';
 
 import './styles.css';
-import cn from 'classnames';
 
 const DetailedCard = ({
   userName,
@@ -18,6 +18,7 @@ const DetailedCard = ({
   isLikedByYou,
   comments,
   className,
+  onLikeClick
 }) => {
   const [isCommentsShow, setIsCommentsShow] = useState(false);
 
@@ -57,6 +58,9 @@ const DetailedCard = ({
           icon={faHeart}
           color={isLikedByYou ? 'red' : 'black'}
           className='cnDetailedCardIconLike'
+
+          onClick={onLikeClick}
+
         />
         <FontAwesomeIcon
           icon={faComment}
